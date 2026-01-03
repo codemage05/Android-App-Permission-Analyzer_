@@ -5224,3 +5224,6 @@ Press CTRL+C to quit
 2026-01-03 17:15:12.016 | DEBUG    | androguard.core.axml:get_resource_dimen:2061 - Out of range dimension unit index for 4082892.0: 13
 2026-01-03 17:15:12.016 | DEBUG    | androguard.core.axml:get_resource_dimen:2061 - Out of range dimension unit index for 4060610.0: 15
 127.0.0.1 - - [03/Jan/2026 17:15:12] "POST /upload HTTP/1.1" 200 -
+ * Detected change in '/home/dudekulariyaz/Desktop/Android-App-Permission-Analyzer_/code/analyzer.py', reloading
+ * Restarting with stat
+/usr/bin/python3: can't open file '/home/dudekulariyaz/Desktop/Android-App-Permission-Analyzer_/app.py': [Errno 2] No such file or directory
