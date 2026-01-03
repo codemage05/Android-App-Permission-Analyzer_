@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Report</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .permission-card {
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .high-risk {
+            background-color: #ffe0e0;
+            border-left: 4px solid #ff4444;
+        }
+        .medium-risk {
+            background-color: #fff4e0;
+            border-left: 4px solid #ff9800;
+        }
+        .low-risk {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+        }
+        .unknown {
+            background-color: #f0f0f0;
+            border-left: 4px solid #999;
+        }
+        .ai-analysis {
+            background-color: #e3f2fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        .verdict-safe {
+            color: #4caf50;
+            font-weight: bold;
+        }
+        .verdict-suspicious {
+            color: #ff9800;
+            font-weight: bold;
+        }
+        .verdict-highly-suspicious {
+            color: #ff4444;
+            font-weight: bold;
+        }
+        code {
+            background-color: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <article>
+            <h1 style="text-align: center;">🛡️ Analysis Report</h1>
+            
+            <section>
+                <h3>App Details</h3>
+                <p><strong>App Name:</strong> {{ app_name }}</p>
+                <p><strong>Package Name:</strong> <code>{{ package_name }}</code></p>
+            </section>
+
+            <hr>
+
+            <!-- AI Contextual Analysis -->
+            {% if ai_summary %}
+            <section class="ai-analysis">
+                <h3>🤖 AI Security Analysis</h3>
+                <p>{{ ai_summary | safe }}</p>
+            </section>
+            {% endif %}
+
+            <hr>
+
+            <!-- High Risk Permissions -->
+            {% if report.high_risk %}
+            <section>
+                <h3>🚨 High Risk Permissions ({{ report.high_risk|length }})</h3>
+                {% for perm in report.high_risk %}
+                <div class="permission-card high-risk">
+                    <strong>{{ perm.name }}</strong>
+                    <p>{{ perm.description }}</p>
+                </div>
+                {% endfor %}
+            </section>
+            {% endif %}
+
+            <!-- Medium Risk Permissions -->
+            {% if report.medium_risk %}
+            <section>
+                <h3>⚠️ Medium Risk Permissions ({{ report.medium_risk|length }})</h3>
+                {% for perm in report.medium_risk %}
+                <div class="permission-card medium-risk">
+                    <strong>{{ perm.name }}</strong>
+                    <p>{{ perm.description }}</p>
+                </div>
+                {% endfor %}
+            </section>
+            {% endif %}
+
+            <!-- Low Risk Permissions -->
+            {% if report.low_risk %}
+            <section>
+                <h3>✅ Low Risk Permissions ({{ report.low_risk|length }})</h3>
+                {% for perm in report.low_risk %}
+                <div class="permission-card low-risk">
+                    <strong>{{ perm.name }}</strong>
+                    <p>{{ perm.description }}</p>
+                </div>
+                {% endfor %}
+            </section>
+            {% endif %}
+
+            <!-- Unknown Permissions -->
+            {% if report.unknown %}
+            <section>
+                <h3>❓ Unknown Permissions ({{ report.unknown|length }})</h3>
+                {% for perm in report.unknown %}
+                <div class="permission-card unknown">
+                    <strong>{{ perm.name }}</strong>
+                    <p>{{ perm.description }}</p>
+                </div>
+                {% endfor %}
+            </section>
+            {% endif %}
+
+            <hr>
+
+            <div style="text-align: center;">
+                <a href="/" role="button">Analyze Another App</a>   
+            </div>
+        </article>
+    </main>
+</body>
+</html>

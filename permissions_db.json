@@ -1,0 +1,42 @@
+{
+  "android.permission.READ_CONTACTS": {
+    "risk": "High",
+    "description": "Allows the app to read all data about your contacts. Malicious apps can steal your address book."
+  },
+  "android.permission.READ_SMS": {
+    "risk": "High",
+    "description": "Allows the app to read your text messages. This can be used to steal passwords and one-time pins (OTPs)."
+  },
+  "android.permission.ACCESS_FINE_LOCATION": {
+    "risk": "High",
+    "description": "Tracks your precise GPS location. Unnecessary for many apps and can be used to track you."
+  },
+  "android.permission.CAMERA": {
+    "risk": "High",
+    "description": "Allows the app to use your camera. It could be used to take pictures or record video without your knowledge."
+  },
+  "android.permission.RECORD_AUDIO": {
+    "risk": "High",
+    "description": "Allows the app to use your microphone. It could be used to record your conversations."
+  },
+  "android.permission.READ_EXTERNAL_STORAGE": {
+    "risk": "Medium",
+    "description": "Allows the app to read all files (photos, videos, documents) on your device's storage."
+  },
+  "android.permission.WRITE_EXTERNAL_STORAGE": {
+    "risk": "Medium",
+    "description": "Allows the app to save, modify, or delete files on your device's storage."
+  },
+  "android.permission.INTERNET": {
+    "risk": "Low",
+    "description": "Allows the app to connect to the internet. This is common, but allows data to be sent *from* your device."
+  },
+  "android.permission.FLASHLIGHT": {
+    "risk": "Low",
+    "description": "Allows the app to control the flashlight. This is normal for flashlight apps."
+  },
+  "android.permission.WAKE_LOCK": {
+    "risk": "Low",
+    "description": "Keeps the phone from sleeping. Common for media or game apps."
+  }
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Android App Permission Analyzer</title>
+    <!-- Pico.css for instant, beautiful styling. No effort required! -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <style>
+        body {
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+        }
+        main {
+            width: 80%;
+            max-width: 700px;
+        }
+        .drop-zone {
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .drop-zone.drag-over {
+            background-color: #f0f0f0;
+        }
+        #file-input {
+            display: none;
+        }
+        #loading {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <article>
+            <h1 style="text-align: center;">🛡️</h1>
+            <h2 style="text-align: center;">App Permission Analyzer</h2>
+            <p>Is that "simple" app spying on you? Upload an <code>.apk</code> file to find out what permissions it *really* wants.</p>
+            
+            <!-- Upload Form -->
+            <form id="upload-form" action="/upload" method="POST" enctype="multipart/form-data">
+                <div class="drop-zone" id="drop-zone">
+                    <p>Drag & Drop your <code>.apk</code> file here</p>
+                    <p>or</p>
+                    <button type="button" onclick="document.getElementById('file-input').click()">Select File</button>
+                    <input type="file" name="file" id="file-input" accept=".apk" required>
+                    <p id="file-name" style="margin-top: 10px;"></p>
+                </div>
+                
+                <button type="submit" id="submit-btn" style="width: 100%; margin-top: 15px;">Analyze Now</button>
+            </form>
+            
+            <!-- Loading Indicator -->
+            <div id="loading" aria-busy="true" style="text-align: center; margin-top: 20px;">Analyzing, please wait...</div>
+        </article>
+    </main>
+    
+    <script>
+        const dropZone = document.getElementById('drop-zone');
+        const fileInput = document.getElementById('file-input');
+        const fileNameDisplay = document.getElementById('file-name');
+        const uploadForm = document.getElementById('upload-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const loadingDiv = document.getElementById('loading');
+
+        // Handle file drop
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('drag-over');
+        });
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('drag-over');
+        });
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('drag-over');
+            const files = e.dataTransfer.files;
+            if (files.length > 0 && files[0].name.endsWith('.apk')) {
+                fileInput.files = files;
+                fileNameDisplay.textContent = files[0].name;
+            } else {
+                alert('Please drop an .apk file.');
+            }
+        });
+
+        // Handle file selection
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                fileNameDisplay.textContent = fileInput.files[0].name;
+            }
+        });
+
+        // Show loading spinner on submit
+        uploadForm.addEventListener('submit', () => {
+            if (fileInput.files.length > 0) {
+                submitBtn.style.display = 'none';
+                loadingDiv.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
