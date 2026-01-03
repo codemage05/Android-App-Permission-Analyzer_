@@ -52,7 +52,3 @@ Files of interest
 - `core_analyzer.py` — APK parsing and permission analysis logic
 - `analyzer.py` — small adapter so `app.py` can import the analyzer functions
 - `templates/` — Jinja2 templates used for upload and report pages
-
-# Android-App-Permission-Analyzer\_
-
-Hackathon Project
