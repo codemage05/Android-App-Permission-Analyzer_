@@ -1,5 +1,6 @@
 import json
 import sys
+import os
 from androguard.core.apk import APK
 import google.generativeai as genai
 
@@ -67,10 +68,12 @@ def get_ai_context_analysis(app_name, risky_permission_list):
 
     try:
        
-        API_KEY = "YOUR_GEMINI_API_KEY_GOES_HERE" 
+        # Read API key from environment for safety. Set GEMINI_API_KEY in your environment
+        # if you want AI contextual analysis. If not set, skip AI analysis.
+        API_KEY = os.environ.get("GEMINI_API_KEY", "YOUR_GEMINI_API_KEY_GOES_HERE")
         if API_KEY == "YOUR_GEMINI_API_KEY_GOES_HERE":
-            return "AI analysis is not configured. Please add your Gemini API key to analyzer.py."
-            
+            return "AI analysis is not configured. Set the GEMINI_API_KEY environment variable to enable it."
+
         genai.configure(api_key=API_KEY)
         model = genai.GenerativeModel('gemini-2.5-flash-preview-09-2025')
 
