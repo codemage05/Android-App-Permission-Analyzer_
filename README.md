@@ -120,6 +120,7 @@ Then open `report.html` in your browser.
 # Analyze Calculator
 curl -s -F "file=@uploads/Calculator_9.0_.apk" http://127.0.0.1:5000/upload -o calculator_report.html
 
+<<<<<<< HEAD
 # Analyze FlashLight
 curl -s -F "file=@uploads/FlashLight_.apk" http://127.0.0.1:5000/upload -o flashlight_report.html
 ```
@@ -299,3 +300,9 @@ For issues, feature requests, or questions:
 ---
 
 **Last Updated:** January 2026
+=======
+- `app.py` — Flask app and upload handling
+- `core_analyzer.py` — APK parsing and permission analysis logic
+- `analyzer.py` — small adapter so `app.py` can import the analyzer functions
+- `templates/` — Jinja2 templates used for upload and report pages
+>>>>>>> c11ed478866edc5b3fe6893afd0bde28f5dd6b64
