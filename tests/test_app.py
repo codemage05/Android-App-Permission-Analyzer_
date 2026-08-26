@@ -3,12 +3,8 @@ import os
 import pytest
 from unittest.mock import patch
 
-try:
-    import code.app as app_module
-    app = app_module.app
-except ImportError:
-    import app as app_module
-    app = app_module.app
+from code.app import app
+import code.app as app_module
 
 
 @pytest.fixture

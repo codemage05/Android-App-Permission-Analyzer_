@@ -2,10 +2,7 @@ import os
 import pytest
 from unittest.mock import MagicMock, patch
 
-try:
-    from code.core_analyzer import analyze_permissions, get_ai_context_analysis, get_app_details
-except ImportError:
-    from core_analyzer import analyze_permissions, get_ai_context_analysis, get_app_details
+from code.core_analyzer import analyze_permissions, get_ai_context_analysis, get_app_details
 
 
 def test_analyze_permissions_high_risk():
