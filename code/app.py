@@ -3,8 +3,11 @@ from flask import Flask, request, render_template, redirect, url_for
 from werkzeug.utils import secure_filename
 from analyzer import get_app_details, analyze_permissions, get_ai_context_analysis
 
-app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = 'uploads/'
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+template_dir = os.path.join(BASE_DIR, 'templates')
+
+app = Flask(__name__, template_folder=template_dir)
+app.config['UPLOAD_FOLDER'] = os.path.join(BASE_DIR, 'uploads')
 app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024  # 100 MB max upload size
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 

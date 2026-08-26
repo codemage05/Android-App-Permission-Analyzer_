@@ -4,8 +4,11 @@ import os
 from androguard.core.apk import APK
 import google.generativeai as genai
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+db_path = os.path.join(BASE_DIR, 'permissions_db.json')
+
 try:
-    with open('permissions_db.json', 'r') as f:
+    with open(db_path, 'r') as f:
         PERMISSIONS_DB = json.load(f)
 except FileNotFoundError:
     print("Error: permissions_db.json not found.")
