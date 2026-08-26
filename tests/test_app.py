@@ -3,7 +3,12 @@ import os
 import pytest
 from unittest.mock import patch
 
-from app import app
+try:
+    import code.app as app_module
+    app = app_module.app
+except ImportError:
+    import app as app_module
+    app = app_module.app
 
 
 @pytest.fixture
@@ -48,9 +53,9 @@ def test_upload_non_apk_file(client):
     assert b"Invalid file type. Please upload an .apk file." in response.data
 
 
-@patch("app.get_app_details")
-@patch("app.analyze_permissions")
-@patch("app.get_ai_context_analysis")
+@patch.object(app_module, "get_app_details")
+@patch.object(app_module, "analyze_permissions")
+@patch.object(app_module, "get_ai_context_analysis")
 def test_upload_valid_apk_success(mock_get_ai, mock_analyze, mock_get_details, client):
     """Verify POST /upload with valid .apk extension parses APK and renders report HTML."""
     mock_get_details.return_value = ("Test Flashlight", "com.example.flashlight", ["android.permission.CAMERA"])

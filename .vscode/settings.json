@@ -1,0 +1,8 @@
+{
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}/code"
+  ],
+  "python.autoComplete.extraPaths": [
+    "${workspaceFolder}/code"
+  ]
+}
